@@ -101,7 +101,7 @@ Example Music Data:
             "addedAt": 1491873349,
             "updatedAt": 1567174880
         },
-        "playerUuid": "14684678d4b104c305387744dcf82238",
+        "playerUuid": "123456789abcd",
         "status": "STOPPED"
     }
 }
