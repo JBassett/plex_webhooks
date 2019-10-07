@@ -1,0 +1,10 @@
+{
+    "domain": "plex_webhooks",
+    "name": "Plex Webhooks",
+    "documentation": "https://github.com/JBassett/plex_webhooks",
+    "dependencies": [],
+    "codeowners": [
+        "@JBassett"
+    ],
+    "requirements": []
+}
