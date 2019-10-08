@@ -46,9 +46,11 @@ async def handle_webhook(hass, webhook_id, request):
         logging.warn('Issue decoding webhook: ' + part.text())
         return None
 
-    data['playerUuid'] = data['Player']['uuid']
-
     event = data['event']
+    # We always want to set the status because if we don't then the event
+    # trigger filtering doesn't work
+    data['status'] = event
+
     playing = ['media.play', 'media.resume']
     stopped = ['media.pause', 'media.stop']
     grabbed = ['library.new']
