@@ -34,15 +34,16 @@ async def handle_webhook(hass, webhook_id, request):
     data = {}
     
     try:
-        body = await request.text()
-        # This is bad, but I don't see a better way to extract just the json...
-        raw_json = body[body.index('{'):body.rindex('}')+1]
-        data = json.loads(raw_json) if body else {}
+        reader = await request.multipart()
+        # https://docs.aiohttp.org/en/stable/multipart.html#aiohttp-multipart
+        while True:
+            part = await reader.next()
+            if part is None:
+                break
+            if part.name == 'payload':
+                data = await part.json()
     except ValueError:
-        logging.warn('Issue decoding webhook: ' + raw_json)
-        return None
-    except:
-        logging.debug('Ignoring webhook, must be a photo?')
+        logging.warn('Issue decoding webhook: ' + part.text())
         return None
 
     data['playerUuid'] = data['Player']['uuid']
