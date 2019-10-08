@@ -56,9 +56,11 @@ async def handle_webhook(hass, webhook_id, request):
     if event in playing:
         logging.debug('Plex started playing')
         data['status'] = 'PLAYING'
+        data['playerUuid'] = data['Player']['uuid']
     elif event in stopped:
         logging.debug('Plex stopped playing')
         data['status'] = 'STOPPED'
+        data['playerUuid'] = data['Player']['uuid']
     elif event in grabbed:
         logging.debug('Plex got new media')
         data['status'] = 'GRABBED'
