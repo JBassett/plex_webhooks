@@ -3,7 +3,7 @@
     "name": "Plex Webhooks",
     "documentation": "https://github.com/JBassett/plex_webhooks",
     "dependencies": [
-        "webhooks"
+        "webhook"
     ],
     "codeowners": [
         "@JBassett"
