@@ -54,7 +54,13 @@ async def handle_webhook(hass, webhook_id, request):
     playing = ['media.play', 'media.resume']
     stopped = ['media.pause', 'media.stop']
     grabbed = ['library.new']
-    
+
+    # 'track' is  Music
+    # 'episode' is TV
+    # 'movie' is Movie
+    # 'clip' is Live TV
+    data['type'] = data['Metadata']['type']
+
     if event in playing:
         _LOGGER.debug('Plex started playing')
         data['status'] = 'PLAYING'
